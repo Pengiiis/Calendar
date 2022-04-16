@@ -1,0 +1,347 @@
+body,p,dl,dd{
+    margin:0;
+}
+body{
+    color:#333;
+    font-size: 13px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+ul{
+    list-style: none;
+    margin:0;
+    padding:0;
+}
+th,td{
+    padding:0;
+}
+button{
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    background:none;
+}
+i{
+    font-style: normal;
+}
+#calender{
+    width: 600px;
+    height: 480px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .1);
+    margin:100px auto;
+    border-radius: 16px;
+    display: flex;
+}
+#calender .left{
+    padding:15px 15px 0;
+    width: 480px;
+    border:2px solid #4e6ef2;
+    border-right:none;
+    border-radius: 16px 0 0 16px;
+}
+#calender .right{
+    width: 120px;
+    background: #4e6ef2;
+    border-radius:0 16px 16px 0;
+    color:#fff;
+    text-align: center;
+}
+#calender.active .left{
+    border-color: #eb3636;
+}
+#calender.active .right{
+    background: #eb3636;
+}
+/* topbar */
+.topBar{
+    display: flex;
+    justify-content: space-between;
+}
+.select{
+    height: 30px;
+    box-sizing: border-box;
+    border:1px solid #d7d9e0;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #fff;
+    user-select: none;
+    position: relative;
+}
+.yearSelect{
+    width: 96px;   
+}
+.selected{
+    height: 28px;
+    padding:0 7px;
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.selected i{
+    font-size: 14px;
+    color:#9ba2a9;
+    font-family: 'YaHei';
+    transform: scaleX(1.5) rotate(90deg);
+}
+.select.active{
+    border-color:#a7aab5;
+}
+.select.active .selected i{
+    color:#767e87;
+    transform: scaleX(1.5) rotate(-90deg);
+}
+.selectBox{
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow:0 1px 10px rgba(0,0,0,.1);
+    background: #fff;
+    border-radius:6px;
+    padding:9px 0 9px 16px;
+    position:absolute;
+    left: 0;
+    top: 38px;
+    z-index: 10px;
+    display: none;
+}
+.select.active .selectBox{
+    display: block;
+}
+.yearSelect .selectBox{
+    max-height:312px;
+    overflow: hidden;
+}
+.selectBox li{
+    height:27px;
+    line-height:27px;
+    cursor:pointer;
+}
+.selectBox li:hover,.selectBox li.active{
+    color:#315efb;
+}
+.scroll{
+    width: 4px;
+    position: absolute;
+    top:9px;
+    bottom:9px;
+    /* background: #ccc; */
+    right:4px;
+}
+.scroll span{
+    width: 100%;
+    height: 30px;
+    background: #4e6ef2;
+    position: absolute;
+    top:0;
+    border-radius: 6px;
+}
+.montSelect{
+    display: flex;
+    width: 148px;
+    justify-content:space-between;
+}
+.montSelect .arrow{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    user-select:none;
+    cursor:pointer;
+}
+.arrow span{
+    font-size:18px;
+    color:#9c9fac;
+    transform:scaleY(1.5);
+    font-family:'yahei';
+    position:relative;
+    top:-2px;
+}
+.montSelect .select{
+    width: 80px;    
+}
+.holidaySelect{
+    width: 96px;
+}
+.topBar button{
+    width: 68px;
+    height: 30px;
+    background: #f5f5f5;
+    border-radius:6px;
+    color:#333;
+}
+/* 日期 */
+.dateWarp{
+    width: 100%;
+    margin-top:14px;
+    /* 单元格间距 */
+    border-spacing:4px;
+}
+.dateWarp th{
+    height:36px;
+    /* background: #ccc; */
+    font-weight:normal
+}
+.dateWarp td{
+    width: 60px;
+    height: 60px;
+}
+.dateWarp div{
+    height: 100%;
+    box-sizing:border-box;
+    border-radius: 6px;
+    /* background:#ccc; */
+    border:2px solid transparent;
+    cursor:pointer;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items:center;
+    position: relative;
+}
+.dateWarp div:hover,div.active{
+    border-color:#bdbfc8
+}
+.dateWarp div span:nth-child(1){
+    font-size:18px;
+    color:#000;
+}
+.dateWarp div span:nth-child(2){
+    font-size:12px;
+    color:#333;
+}
+/* nth-child(选择大于等于6的元素) */
+.dateWarp  td:nth-child(n+6) span:nth-child(1){
+    color:#f73131;
+}
+.dateWarp .holiday{
+    background: #fde3e4;
+}
+.dateWarp .holiday:hover,.dateWarp .holiday.active{
+    border-color:#f38686;
+}
+.dateWarp .holiday::before,.dateWarp .weekday::before{
+    content:'休';
+    font-size:12px;
+    line-height: 12px;
+    color:#f73131;
+    position: absolute;
+    /* background: #315efb; */
+    top:4px;
+    left:4px;
+}
+.dateWarp .holiday span:nth-child(1){
+    color:#f73131;  
+}
+.dateWarp .weekday{
+    background: #f5f5f6;
+}
+.dateWarp .weekday::before{
+    content:'班';
+    color:#626675;
+}
+.dateWarp td .weekday span:nth-child(1){
+    color:#000;
+}
+.prevMonth,.nextMonth{
+    opacity:.4;
+}
+.today{
+    border-color:#4e6ef2!important;
+}
+#calender .date{
+    line-height:45px;
+}
+#calender .day{
+    width: 80px;
+    height: 80px;
+    margin:0 auto 6px;
+    line-height: 80px;
+    font-size: 52px;
+    background: rgba(255, 255, 255, .5);
+    border-radius:12px
+}
+#calender .lunar{
+    line-height: 21px;
+}
+#calender .holidayList li{
+    width: 112px;
+    box-sizing: border-box;
+    margin-top:13px;
+    padding:0 12px;
+    font-size: 12px;
+    line-height:16px;
+    text-align: center;
+    position: relative;
+
+    white-space:nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#calender .holidayList li::before{
+    content: '';
+    width: 3px;
+    height: 3px;
+    background: #fff;
+    position: absolute;
+    top: 6px;
+    left: 12px;
+    border-radius: 50%;
+}
+#calender .suit{
+    position: relative;
+    background: rgba(255, 255, 255, .15);
+    margin:12px 0 -100px;
+    padding:12px 0 100px;
+}
+#calender .suit .default{
+    display: flex;
+    /* 分散居中对齐 */
+    justify-content: space-around; 
+}
+#calender .suit .default dl{
+    height: 190px;
+    overflow: hidden;
+}
+#calender .suit .default dt{
+    font-size:24px; 
+}
+#calender .suit .default dd{
+    line-height: 20px;
+}
+#calender .hover{
+    position: absolute;
+    width: 190px;
+    background: #fff;
+    top:0;
+    right: -230px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .1);
+    color:#333;
+    padding:16px;
+    display: none;
+}
+#calender .suit:hover .hover{
+    display: block;
+}
+#calender .hover dl{
+    display: flex;
+    justify-content: space-between;
+}
+#calender .hover dt{
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    font-size: 18px;
+    background: #4e6ef2;
+    border-radius: 6px;
+}
+#calender .hover dd{
+    width: 156px;
+    text-align: left;
+    line-height: 21px;
+}
+#calender .hover dl:nth-child(2){
+    margin-top:15px
+}
+#calender .hover dl:nth-child(2) dt{
+    background: #f73131;
+}
